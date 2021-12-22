@@ -1,13 +1,15 @@
-# This is the react version of the Quran app. The angularjs version is located [https://github.com/ibnharoon/quranwebservice/tree/master/apps](here).
-# How to test this app
+This is the react version of the Quran app. The angularjs version is located [https://github.com/ibnharoon/quranwebservice/tree/master/apps](here).
 
-## Available Scripts
+# How to run this app on your local machine
 
-In the project directory, you can run:
+### clone the source from git
+`git clone --branch Source https://github.com/ibnharoon/quran-app-react.git <source directory>`
 
-### `npm start`
+### install react-script
+`npm install react-scripts`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### start the app in development mode
+`npm start`
 
-The page will reload when you make changes.
+### This will automatically open the brower. If the browser did not come up, open the browser and navigate to this URL: http://localhost:3000
+
