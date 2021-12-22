@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/quran-app-react/static/css/main.99e187ba.css",
-    "main.js": "/quran-app-react/static/js/main.22465810.js",
+    "main.js": "/quran-app-react/static/js/main.7f9a67aa.js",
     "index.html": "/quran-app-react/index.html",
     "main.99e187ba.css.map": "/quran-app-react/static/css/main.99e187ba.css.map",
-    "main.22465810.js.map": "/quran-app-react/static/js/main.22465810.js.map"
+    "main.7f9a67aa.js.map": "/quran-app-react/static/js/main.7f9a67aa.js.map"
   },
   "entrypoints": [
     "static/css/main.99e187ba.css",
-    "static/js/main.22465810.js"
+    "static/js/main.7f9a67aa.js"
   ]
 }
