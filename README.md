@@ -1,4 +1,4 @@
-This is the react version of the Quran app. The angularjs version is located [https://github.com/ibnharoon/quranwebservice/tree/master/apps](here).
+This is the react version of the Quran app. The original (in angularjs) version is located [https://github.com/ibnharoon/quranwebservice/tree/master/apps](here).
 
 # How to run this app on your local machine
 
