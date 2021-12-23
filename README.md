@@ -10,6 +10,7 @@ This is the react version of the Quran app. The angularjs version is located [ht
 
 ### start the app in development mode
 `cd <source directory>`
+
 `npm start`
 
 This will automatically open the brower. If the browser did not come up, open the browser and navigate to this URL: http://localhost:3000
