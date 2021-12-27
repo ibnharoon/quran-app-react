@@ -1,8 +1,8 @@
 import './App.css';
-import Page from './components/Pages/Pages'
+import Page from './components/Pages/Pages';
 import useWindowDimensions from './utils/windows';
 import { Fragment, useState } from 'react';
-
+    
 function App() {
   let [currentPage, setCurrentPage] = useState(1);
 
@@ -25,10 +25,8 @@ function App() {
     setCurrentPage(currentPage);
     console.log("handle next page: " + currentPage);
   }
-
+  
   let dimension = useWindowDimensions();
-
-  console.log("dimension: " + JSON.stringify(dimension) + ", currentPage: " + currentPage);
 
   return (
     <Fragment>
