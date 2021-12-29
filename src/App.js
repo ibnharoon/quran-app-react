@@ -33,6 +33,7 @@ function App() {
   }
   
   function handleTouchEnd(touchEndEvent) {
+    touchEndEvent.preventDefault();
     handleEnd(touchEndEvent.clientX);
   }
   
@@ -42,6 +43,7 @@ function App() {
   }
   
   function handleMouseUp(mouseUpEvent) {
+    mouseUpEvent.preventDefault();
     handleEnd(mouseUpEvent.clientX);
   }
   

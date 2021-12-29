@@ -15,6 +15,7 @@ const AsyncImage = (props) => {
       const image = new Image();
       image.addEventListener("load", handleLoad);
       image.src = props.src;
+      image.alt = "";
       return () => {
         image.removeEventListener("load", handleLoad);
       };
