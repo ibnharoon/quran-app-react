@@ -7,7 +7,6 @@ import { Fragment, useState } from 'react';
 function App() {
   let [currentPage, setCurrentPage] = useState(1);
   let [touchStartX, setTouchStartX] = useState(0);
-  let [touchEndX, setTouchEndX] = useState(0);
   let [beingTouched, setBeingTouched] = useState(false);
   
   function handleStart(clientX) {
@@ -47,8 +46,8 @@ function App() {
     handleMove(touchMoveEvent.targetTouches[0].clientX);
   }
   
-  function handleTouchEnd() {
-    handleEnd();
+  function handleTouchEnd(touchEndEvent) {
+    handleEnd(touchEndEvent.clientX);
   }
   
   function handleMouseDown(mouseDownEvent) {
@@ -145,7 +144,7 @@ function App() {
             onMouseUp={mouseUpEvent => handleMouseUp(mouseUpEvent)}
             onTouchStart={touchStartEvent => handleTouchStart(touchStartEvent)}
             onTouchMove={touchMoveEvent => handleTouchMove(touchMoveEvent)}
-            onTouchEnd={handleTouchEnd}
+            onTouchEnd={touchEndEvent => handleTouchEnd(touchEndEvent)}
           >
             <Page dimension={dimension} currentPage={currentPage} />
           </div>
