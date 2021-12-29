@@ -9,14 +9,17 @@ function App() {
   let [currentPage, setCurrentPage] = useState(1);
   let [touchStartX, setTouchStartX] = useState(0);
   const swipedConfig = { delta: 10, preventDefaultTouchmoveEvent: false, trackTouch: true, trackMouse: false, rotationAngle: 0 };
-  const swipedHandler = useSwipeable({ onSwiped: (eventData) => handleEnd(eventData), ...swipedConfig });
+  const swipedHandler = useSwipeable({
+	  onSwipedLeft: handleEnd(-1),
+	  onSwipedRight: handleEnd(1),
+	  ...swipedConfig
+  });
   
   function handleStart(clientX) {
     setTouchStartX(clientX);
   }
   
-  function handleEnd(clientX) {
-    let deltaX = clientX - touchStartX;
+  function handleEnd(deltaX) {
     if (deltaX > 0) {
         if (currentPage < Constants.NPAGE) {
             currentPage += 1;
@@ -37,7 +40,8 @@ function App() {
   
   function handleTouchEnd(touchEndEvent) {
     touchEndEvent.preventDefault();
-    handleEnd(touchEndEvent.clientX);
+    let deltaX = touchEndEvent.clientX - touchStartX;
+    handleEnd(deltaX);
   }
   
   function handleMouseDown(mouseDownEvent) {
@@ -47,7 +51,8 @@ function App() {
   
   function handleMouseUp(mouseUpEvent) {
     mouseUpEvent.preventDefault();
-    handleEnd(mouseUpEvent.clientX);
+    let deltaX = mouseUpEvent.clientX - touchStartX;
+    handleEnd(deltaX);
   }
   
   function handlePreviousPage(e) {
