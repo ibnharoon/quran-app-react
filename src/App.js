@@ -7,17 +7,9 @@ import { Fragment, useState } from 'react';
 function App() {
   let [currentPage, setCurrentPage] = useState(1);
   let [touchStartX, setTouchStartX] = useState(0);
-  let [beingTouched, setBeingTouched] = useState(false);
   
   function handleStart(clientX) {
     setTouchStartX(clientX);
-    setBeingTouched(true);
-  }
-  
-  function handleMove(clientX) {
-    if (beingTouched) {
-      setTouchEndX(clientX);
-    }
   }
   
   function handleEnd(clientX) {
@@ -33,17 +25,11 @@ function App() {
     }
     setCurrentPage(currentPage);
     setTouchStartX(0);
-    setTouchEndX(0);
-    setBeingTouched(false);
   }
   
   function handleTouchStart(touchStartEvent) {
     touchStartEvent.preventDefault();
     handleStart(touchStartEvent.targetTouches[0].clientX);
-  }
-  
-  function handleTouchMove(touchMoveEvent) {
-    handleMove(touchMoveEvent.targetTouches[0].clientX);
   }
   
   function handleTouchEnd(touchEndEvent) {
@@ -53,10 +39,6 @@ function App() {
   function handleMouseDown(mouseDownEvent) {
     mouseDownEvent.preventDefault();
     handleStart(mouseDownEvent.clientX);
-  }
-  
-  function handleMouseMove(mouseMoveEvent) {
-    handleMove(mouseMoveEvent.clientX);
   }
   
   function handleMouseUp(mouseUpEvent) {
@@ -140,10 +122,8 @@ function App() {
             height: (dimension.height - (dimension.topoutline + dimension.bottomoutline))
             }}
             onMouseDown={mouseDownEvent => handleMouseDown(mouseDownEvent)}
-            onMouseMove={mouseMoveEvent => handleMouseMove(mouseMoveEvent)}
             onMouseUp={mouseUpEvent => handleMouseUp(mouseUpEvent)}
             onTouchStart={touchStartEvent => handleTouchStart(touchStartEvent)}
-            onTouchMove={touchMoveEvent => handleTouchMove(touchMoveEvent)}
             onTouchEnd={touchEndEvent => handleTouchEnd(touchEndEvent)}
           >
             <Page dimension={dimension} currentPage={currentPage} />
