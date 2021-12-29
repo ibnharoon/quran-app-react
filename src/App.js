@@ -23,11 +23,11 @@ function App() {
   
   function handleEnd(clientX) {
     let deltaX = clientX - touchStartX;
-    if (deltaX < 0) {
+    if (deltaX > 0) {
         if (currentPage < Constants.NPAGE) {
             currentPage += 1;
         }
-    } else if (deltaX > 0) {
+    } else if (deltaX < 0) {
         if (currentPage > 1) {
             currentPage -= 1;
         }
