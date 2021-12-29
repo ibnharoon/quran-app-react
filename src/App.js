@@ -1,11 +1,69 @@
 import './App.css';
 import Page from './components/Pages/Pages';
 import useWindowDimensions from './utils/windows';
+import Constants from './constants/constants';
 import { Fragment, useState } from 'react';
     
 function App() {
   let [currentPage, setCurrentPage] = useState(1);
-
+  let [touchStartX, setTouchStartX] = useState(0);
+  let [touchEndX, setTouchEndX] = useState(0);
+  let [beingTouched, setBeingTouched] = useState(false);
+  
+  function handleStart(clientX) {
+    setTouchStartX(clientX);
+    setBeingTouched(true);
+  }
+  
+  function handleMove(clientX) {
+    if (beingTouched) {
+      setTouchEndX(clientX);
+    }
+  }
+  
+  function handleEnd(clientX) {
+    let deltaX = clientX - touchStartX;
+    if (deltaX < 0) {
+        if (currentPage < Constants.NPAGE) {
+            currentPage += 1;
+        }
+    } else if (deltaX > 0) {
+        if (currentPage > 1) {
+            currentPage -= 1;
+        }
+    }
+    setCurrentPage(currentPage);
+    setTouchStartX(0);
+    setTouchEndX(0);
+    setBeingTouched(false);
+  }
+  
+  function handleTouchStart(touchStartEvent) {
+    touchStartEvent.preventDefault();
+    handleStart(touchStartEvent.targetTouches[0].clientX);
+  }
+  
+  function handleTouchMove(touchMoveEvent) {
+    handleMove(touchMoveEvent.targetTouches[0].clientX);
+  }
+  
+  function handleTouchEnd() {
+    handleEnd();
+  }
+  
+  function handleMouseDown(mouseDownEvent) {
+    mouseDownEvent.preventDefault();
+    handleStart(mouseDownEvent.clientX);
+  }
+  
+  function handleMouseMove(mouseMoveEvent) {
+    handleMove(mouseMoveEvent.clientX);
+  }
+  
+  function handleMouseUp(mouseUpEvent) {
+    handleEnd(mouseUpEvent.clientX);
+  }
+  
   function handlePreviousPage(e) {
     e.preventDefault();
     if (currentPage > 1) {
@@ -13,17 +71,15 @@ function App() {
     }
 
     setCurrentPage(currentPage);
-    console.log("handle previous page: " + currentPage);
   }
 
   function handleNextPage(e) {
     e.preventDefault();
-    if (currentPage < 604) {
+    if (currentPage < Constants.NPAGE) {
       currentPage += 1;
     }
 
     setCurrentPage(currentPage);
-    console.log("handle next page: " + currentPage);
   }
   
   let dimension = useWindowDimensions();
@@ -33,11 +89,8 @@ function App() {
       <div className="App" style={{
         width: dimension.width,
         height: dimension.height
-      }}>
-        { /* 
-      <header className="App-header">
-      </header>
-      */ }
+      }} >
+      
         { /* Top Bar */}
         <div className="top-bar" style={{
           width: dimension.width,
@@ -77,13 +130,23 @@ function App() {
             style={{
               width: dimension.lnavwidth,
               height: (dimension.height - (dimension.topoutline + dimension.bottomoutline))
-            }} onClick={handleNextPage}>
+            }}
+            onClick={ clickEvent => handleNextPage(clickEvent)}
+        >
           </div>
 
-          <div className="pcontent" style={{
+          <div className="pcontent" 
+            style={{
             width: (dimension.width - (dimension.lnavwidth + dimension.rnavwidth)),
             height: (dimension.height - (dimension.topoutline + dimension.bottomoutline))
-          }}>
+            }}
+            onMouseDown={mouseDownEvent => handleMouseDown(mouseDownEvent)}
+            onMouseMove={mouseMoveEvent => handleMouseMove(mouseMoveEvent)}
+            onMouseUp={mouseUpEvent => handleMouseUp(mouseUpEvent)}
+            onTouchStart={touchStartEvent => handleTouchStart(touchStartEvent)}
+            onTouchMove={touchMoveEvent => handleTouchMove(touchMoveEvent)}
+            onTouchEnd={handleTouchEnd}
+          >
             <Page dimension={dimension} currentPage={currentPage} />
           </div>
 
@@ -92,7 +155,7 @@ function App() {
             style={{
               width: dimension.rnavwidth,
               height: (dimension.height - (dimension.topoutline + dimension.bottomoutline))
-            }} onClick={handlePreviousPage}>
+            }} onClick={ clickEvent => handlePreviousPage(clickEvent)}>
           </div>
         </div>
 

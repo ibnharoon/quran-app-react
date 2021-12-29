@@ -1,5 +1,6 @@
 const Constants = {
-    glyphsize: 40
+    glyphsize: 40,
+    NPAGE: 604
 };
 
 export default Constants;
