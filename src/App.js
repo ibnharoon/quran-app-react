@@ -8,11 +8,11 @@ import { useSwipeable } from 'react-swipeable';
 function App() {
   let [currentPage, setCurrentPage] = useState(1);
   let [touchStartX, setTouchStartX] = useState(0);
-  const swipedConfig = { delta: 10, preventDefaultTouchmoveEvent: false, trackTouch: true, trackMouse: false, rotationAngle: 0 };
   const swipedHandler = useSwipeable({
-	  onSwipedLeft: handleEnd(-1),
-	  onSwipedRight: handleEnd(1),
-	  ...swipedConfig
+	  onSwipedLeft: () => handleEnd(-1),
+	  onSwipedRight: () => handleEnd(1),
+	  preventDefaultTouchmoveEvent: true,
+	  trackMouse: true
   });
   
   function handleStart(clientX) {
