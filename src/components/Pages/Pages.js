@@ -15,7 +15,6 @@ const AsyncImage = (props) => {
       const image = new Image();
       image.addEventListener("load", handleLoad);
       image.src = props.src;
-      image.alt = "";
       return () => {
         image.removeEventListener("load", handleLoad);
       };
@@ -23,7 +22,7 @@ const AsyncImage = (props) => {
   }, [props.src]);
 
   if (loadedSrc === props.src) {
-    return <img {...props} />;
+    return <img {...props} alt="" />;
   }
 
   return null;

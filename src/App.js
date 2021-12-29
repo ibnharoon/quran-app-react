@@ -3,10 +3,13 @@ import Page from './components/Pages/Pages';
 import useWindowDimensions from './utils/windows';
 import Constants from './constants/constants';
 import { Fragment, useState } from 'react';
+import { useSwipeable } from 'react-swipeable';
     
 function App() {
   let [currentPage, setCurrentPage] = useState(1);
   let [touchStartX, setTouchStartX] = useState(0);
+  const swipedConfig = { delta: 10, preventDefaultTouchmoveEvent: false, trackTouch: true, trackMouse: false, rotationAngle: 0 };
+  const swipedHandler = useSwipeable({ onSwiped: (eventData) => handleEnd(eventData), ...swipedConfig });
   
   function handleStart(clientX) {
     setTouchStartX(clientX);
@@ -127,6 +130,7 @@ function App() {
             onMouseUp={mouseUpEvent => handleMouseUp(mouseUpEvent)}
             onTouchStart={touchStartEvent => handleTouchStart(touchStartEvent)}
             onTouchEnd={touchEndEvent => handleTouchEnd(touchEndEvent)}
+	    { ...swipedHandler }
           >
             <Page dimension={dimension} currentPage={currentPage} />
           </div>
