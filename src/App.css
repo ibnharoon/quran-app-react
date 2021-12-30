@@ -33,6 +33,43 @@
   float: right;
 }
 
+.page-number-bar {
+  display: inline;
+  margin: 0 auto;
+  border: none;
+}
+
+.page-number-top-left-even {
+  float: left;
+  background-image: url('assets/images/book-edge-middle-even.png');
+  cursor: pointer;
+}
+
+.page-number-top-left-odd {
+  float: left;
+  background-image: url('assets/images/book-edge-middle-odd.png');
+  cursor: pointer;
+}
+
+.page-number-middle {
+  margin-left: auto;
+  margin-right: auto;
+  float: left;
+  text-align: center;
+}
+
+.page-number-top-right-even {
+  background-image: url('assets/images/book-edge-right-even.png');
+  background-repeat: no-repeat;
+  float: right;
+}
+
+.page-number-top-right-odd {
+  background-image: url('assets/images/book-edge-right-odd.png');
+  background-repeat: no-repeat;
+  float: right;
+}
+
 .pcontent {
   margin-left: auto;
   margin-right: auto;

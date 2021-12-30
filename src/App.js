@@ -88,7 +88,7 @@ function App() {
           height: dimension.topoutline
         }}>
 
-          { /* top left corner */}
+          { /* top left corner */ }
           <div className={currentPage % 2 ? 'top-left-corner-even' : 'top-left-corner-odd'}
             style={{
               width: dimension.lnavwidth,
@@ -96,13 +96,14 @@ function App() {
             }}>
           </div>
 
-          { /* top page outline */}
+          { /* top page outline */ }
           <div className="top-outline" style={{
             width: dimension.width - (dimension.lnavwidth * 2),
             height: dimension.topoutline
           }}>
           </div>
 
+	  { /* top right corner */ }
           <div className={currentPage % 2 ? 'top-right-corner-even' : 'top-right-corner-odd'}
             style={{
               width: dimension.rnavwidth,
@@ -111,10 +112,35 @@ function App() {
           </div>
         </div>
 
+	{ /* Page number Bar */ }
+	<div className="page-number-bar" style={{
+	}}>
+	  { /* left corner */ }
+	  <div className={currentPage % 2 ? 'page-number-top-left-even' : 'page-number-top-left-odd'} style={{
+            width: dimension.lnavwidth,
+	    height: dimension.topoutline
+	  }} >
+	  </div>
+
+	  <div className='page-number-middle' style={{
+            width: dimension.width - (dimension.lnavwidth * 2),
+	    height: dimension.topoutline
+	  }} >
+	    { currentPage }
+	  </div>
+
+	  { /* right corner */ }
+	  <div className={ currentPage % 2 ? 'page-number-top-right-even' : 'page-number-top-right-odd' } style={{
+            width: dimension.rnavwidth,
+	    height: dimension.topoutline
+	  }} >
+	  </div>
+	</div>
+
         { /* Middle Bar */}
         <div className="middle-bar" style={{
           width: dimension.width,
-          height: (dimension.height - (dimension.topoutline + dimension.bottomoutline))
+          height: (dimension.height - (3 * dimension.topoutline))
         }}>
           { /* previous is actually next page in RTL language */}
           <div className={currentPage % 2 ? 'middle-navigation-even' : 'middle-navigation-odd'}
@@ -129,7 +155,7 @@ function App() {
           <div className="pcontent" 
             style={{
             width: (dimension.width - (dimension.lnavwidth + dimension.rnavwidth)),
-            height: (dimension.height - (dimension.topoutline + dimension.bottomoutline))
+            height: (dimension.height - (3 * dimension.topoutline))
             }}
             onMouseDown={mouseDownEvent => handleMouseDown(mouseDownEvent)}
             onMouseUp={mouseUpEvent => handleMouseUp(mouseUpEvent)}
