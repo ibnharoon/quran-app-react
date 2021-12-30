@@ -12,7 +12,7 @@ function App() {
 	  onSwipedLeft: () => handleEnd(-1),
 	  onSwipedRight: () => handleEnd(1),
 	  preventDefaultTouchmoveEvent: true,
-	  trackMouse: true
+	  trackMouse: false
   });
   
   function handleStart(clientX) {
