@@ -13,6 +13,6 @@ This is the react version of the Quran app. The original (in angularjs) version 
 
 `npm start`
 
-This will automatically open the brower. If the browser did not come up, open the browser and navigate to this URL: http://localhost:3000
+This will automatically open the browser. If the browser did not come up, launch the browser and navigate to this URL: http://localhost:3000
 
 Click the left/right edge to navigate through the pages
